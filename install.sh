@@ -80,6 +80,25 @@ while [ $# -gt 0 ];do
   shift
 done
 
+setup_zshrc() {
+  local line='[[ -f ~/.zshrc.custom ]] && source ~/.zshrc.custom'
+
+  if [ ! -f "$HOME/.zshrc" ]; then
+    command echo "No .zshrc found, skipping zshrc setup..."
+    return
+  fi
+
+  if grep -qF ".zshrc.custom" "$HOME/.zshrc"; then
+    command echo ".zshrc.custom already configured in .zshrc"
+  else
+    command echo "" >> "$HOME/.zshrc"
+    command echo "# Custom settings from dotfiles" >> "$HOME/.zshrc"
+    command echo "$line" >> "$HOME/.zshrc"
+    command echo "Added .zshrc.custom to .zshrc"
+  fi
+}
+
 link_to_homedir
 link_config_dir
+setup_zshrc
 command echo -e "\e[1;36m Install completed!!!! \e[m"

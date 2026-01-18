@@ -34,17 +34,11 @@ cd ~/dotfiles
 # Check dependencies
 ./check.sh
 
-# Install symlinks
+# Install symlinks and configure zshrc
 ./install.sh
 ```
 
-### 3. Setup zsh
-
-Add the following line to your `~/.zshrc`:
-
-```bash
-echo '[[ -f ~/.zshrc.custom ]] && source ~/.zshrc.custom' >> ~/.zshrc
-```
+> `install.sh` automatically adds `.zshrc.custom` to your `.zshrc`
 
 ## Optional Tools
 
