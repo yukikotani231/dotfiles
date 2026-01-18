@@ -61,6 +61,23 @@ These tools are referenced in configs but not required:
 |--------|-------------|
 | `install.sh` | Create symlinks for dotfiles |
 | `check.sh` | Check if required tools are installed |
+| `sync.sh` | Commit and push changes to GitHub |
+
+## Syncing Changes
+
+Since dotfiles use symlinks, any changes you make are automatically in the repo.
+Just run:
+
+```bash
+cd ~/dotfiles && ./sync.sh
+```
+
+Or manually:
+
+```bash
+cd ~/dotfiles
+git add -A && git commit -m "Update config" && git push
+```
 
 ## Structure
 
