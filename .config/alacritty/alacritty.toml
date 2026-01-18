@@ -1,0 +1,18 @@
+[window]
+opacity = 0.8
+startup_mode = "Maximized"
+
+[font]
+size = 14
+normal = { family = "UbuntuMono Nerd Font", style = "Regular" }
+
+[terminal]
+shell = { program = "/bin/zsh", args = ["-l", "-c", "tmux"] }
+
+[scrolling]
+multiplier = 1
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\n"

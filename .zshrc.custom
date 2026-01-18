@@ -1,0 +1,11 @@
+# Custom zsh settings (managed by dotfiles)
+# This file is sourced from ~/.zshrc
+
+# Vi mode
+bindkey -v
+
+# Aliases
+# alias ll='ls -la'
+
+# Functions
+# function mkcd() { mkdir -p "$1" && cd "$1"; }
