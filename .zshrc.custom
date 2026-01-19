@@ -44,6 +44,11 @@ zinit snippet OMZP::asdf
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # =============================================================================
+# Options
+# =============================================================================
+setopt AUTO_CD          # cd without typing cd
+
+# =============================================================================
 # Vi Mode
 # =============================================================================
 bindkey -v
@@ -60,6 +65,13 @@ alias tf=terraform
 # =============================================================================
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
+
+# Menu selection with arrow keys
+zstyle ':completion:*' menu select
+# Highlight current selection
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# Case-insensitive matching
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # kubectl
 source <(kubectl completion zsh)
