@@ -1,77 +1,50 @@
 # dotfiles
 
-Personal dotfiles for macOS and Linux.
+Personal dotfiles for macOS.
 
 ## Contents
 
 | Config | Description |
 |--------|-------------|
-| `.config/nvim/` | AstroNvim configuration (transparent background) |
+| `.config/nvim/` | AstroNvim configuration |
 | `.config/alacritty/` | Alacritty terminal config |
 | `.config/gh/` | GitHub CLI config |
-| `.tmux.conf` | tmux config (mouse, vi-mode) |
-| `.zshrc.custom` | Custom zsh settings (sourced from .zshrc) |
+| `.tmux.conf` | tmux config |
+| `.zshrc.custom` | Zsh settings with zinit |
+| `.p10k.zsh` | Powerlevel10k theme config |
 | `.vimrc` | Vim config |
 
 ## Installation
 
-### 1. Install required tools
-
 ```bash
-# macOS
-brew install zsh git tmux neovim
-
-# Ubuntu/Debian
-sudo apt install zsh git tmux neovim
-```
-
-### 2. Clone and install
-
-```bash
-git clone https://github.com/yukikotani231/dotfiles.git ~/dotfiles
+# Clone
+git clone git@github.com:yukikotani231/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
-# Check dependencies
-./check.sh
-
-# Install symlinks and configure zshrc
+# Install symlinks
 ./install.sh
 ```
 
-> `install.sh` automatically adds `.zshrc.custom` to your `.zshrc`
+初回のシェル起動時にzinitとプラグインが自動インストールされます。
 
-## Optional Tools
+## Zsh Plugins (via zinit)
 
-These tools are referenced in configs but not required:
-
-- [oh-my-zsh](https://ohmyz.sh/) - zsh framework
-- [mise](https://mise.jdx.dev/) - runtime version manager
-- [bun](https://bun.sh/) - JavaScript runtime
-- [Rust](https://rustup.rs/) - cargo
+| Plugin | Description |
+|--------|-------------|
+| powerlevel10k | テーマ |
+| zsh-autosuggestions | コマンド候補の表示 |
+| zsh-completions | 追加の補完 |
+| zsh-vi-mode | Viモード |
+| OMZP::git | Gitエイリアス |
+| OMZP::asdf | asdf補完 |
 
 ## Scripts
 
 | Script | Description |
 |--------|-------------|
-| `install.sh` | Create symlinks for dotfiles |
-| `check.sh` | Check if required tools are installed |
-| `sync.sh` | Commit and push changes to GitHub |
-
-## Syncing Changes
-
-Since dotfiles use symlinks, any changes you make are automatically in the repo.
-Just run:
-
-```bash
-cd ~/dotfiles && ./sync.sh
-```
-
-Or manually:
-
-```bash
-cd ~/dotfiles
-git add -A && git commit -m "Update config" && git push
-```
+| `install.sh` | シンボリックリンクを作成 |
+| `check.sh` | 必要なツールの確認 |
+| `sync.sh` | 変更をGitHubにpush |
 
 ## Structure
 
@@ -84,7 +57,9 @@ dotfiles/
 ├── .tmux.conf        → ~/.tmux.conf
 ├── .vimrc            → ~/.vimrc
 ├── .zshrc.custom     → ~/.zshrc.custom
+├── .p10k.zsh         → ~/.p10k.zsh
 ├── install.sh
 ├── check.sh
+├── sync.sh
 └── README.md
 ```
