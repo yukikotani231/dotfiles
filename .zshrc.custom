@@ -66,5 +66,5 @@ source <(kubectl completion zsh)
 compdef k=kubectl
 
 # terraform & aws (bash completions)
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-complete -C '/usr/local/bin/aws_completer' aws
+(( $+commands[terraform] )) && complete -o nospace -C "$(command -v terraform)" terraform
+(( $+commands[aws_completer] )) && complete -C "$(command -v aws_completer)" aws

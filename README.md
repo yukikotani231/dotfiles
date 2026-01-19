@@ -1,6 +1,6 @@
 # dotfiles
 
-Personal dotfiles for macOS.
+Personal dotfiles for macOS and Linux.
 
 ## Contents
 
