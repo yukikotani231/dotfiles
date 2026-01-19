@@ -2,6 +2,9 @@
 -- We import this file in `lazy_setup.lua` before the `plugins/` folder.
 -- This guarantees that the specs are processed before any user plugins.
 
+-- Helper: check if executable exists
+local function has(cmd) return vim.fn.executable(cmd) == 1 end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
@@ -12,12 +15,12 @@ return {
   -- TypeScript/JavaScript
   { import = "astrocommunity.pack.typescript" },
 
-  -- Python
-  { import = "astrocommunity.pack.python" },
+  -- Python (only if python3 is installed)
+  { import = "astrocommunity.pack.python", cond = has "python3" },
 
-  -- Rust
-  { import = "astrocommunity.pack.rust" },
+  -- Rust (only if cargo is installed)
+  { import = "astrocommunity.pack.rust", cond = has "cargo" },
 
-  -- Go
-  { import = "astrocommunity.pack.go" },
+  -- Go (only if go is installed)
+  { import = "astrocommunity.pack.go", cond = has "go" },
 }
