@@ -1,11 +1,70 @@
 # Custom zsh settings (managed by dotfiles)
-# This file is sourced from ~/.zshrc
+# This file should be sourced at the BEGINNING of ~/.zshrc
 
-# Vi mode
+# =============================================================================
+# Powerlevel10k Instant Prompt
+# =============================================================================
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# =============================================================================
+# Zinit Installation
+# =============================================================================
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Auto-install zinit if not present
+if [[ ! -d "$ZINIT_HOME" ]]; then
+  print -P "%F{33}Installing zinit...%f"
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+# =============================================================================
+# Plugins
+# =============================================================================
+# Powerlevel10k theme
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
+
+# Essential plugins
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light jeffreytse/zsh-vi-mode
+
+# Oh-My-Zsh plugins (snippets)
+zinit snippet OMZP::git
+zinit snippet OMZP::asdf
+
+# =============================================================================
+# Powerlevel10k Configuration
+# =============================================================================
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# =============================================================================
+# Vi Mode
+# =============================================================================
 bindkey -v
 
+# =============================================================================
 # Aliases
-# alias ll='ls -la'
+# =============================================================================
+alias k=kubectl
+alias dc='docker compose'
+alias tf=terraform
 
-# Functions
-# function mkcd() { mkdir -p "$1" && cd "$1"; }
+# =============================================================================
+# Completions
+# =============================================================================
+autoload -Uz compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
+# kubectl
+source <(kubectl completion zsh)
+compdef k=kubectl
+
+# terraform & aws (bash completions)
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+complete -C '/usr/local/bin/aws_completer' aws
