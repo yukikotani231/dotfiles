@@ -16,7 +16,7 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = true, -- enable format on save globally
+        enabled = false, -- enable format on save globally
       },
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable ts_ls formatting (use prettier instead)
